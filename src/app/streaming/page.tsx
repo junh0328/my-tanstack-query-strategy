@@ -7,6 +7,9 @@ import StreamingPostList from './StreamingPostList';
 import CodeBlock from '@/components/CodeBlock';
 import ExplanationCard from '@/components/ExplanationCard';
 
+// 빌드 시점에 prerender하지 않고, 요청 시마다 동적으로 렌더링
+export const dynamic = 'force-dynamic';
+
 const streamingCode = `// page.tsx (서버 컴포넌트)
 import { Suspense } from 'react';
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
