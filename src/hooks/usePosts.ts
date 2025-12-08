@@ -1,4 +1,9 @@
-import { useQuery, useSuspenseQuery, queryOptions, isServer } from '@tanstack/react-query';
+import {
+  useQuery,
+  useSuspenseQuery,
+  queryOptions,
+  isServer,
+} from '@tanstack/react-query';
 import axios from 'axios';
 
 // 응답 타입 정의
@@ -22,7 +27,7 @@ export interface PostsResponse {
 const getBaseUrl = () => {
   if (isServer) {
     // 서버에서는 절대 URL 사용
-    return process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3001';
+    return process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
   }
   // 클라이언트에서는 상대 URL 사용 가능
   return '';
@@ -31,7 +36,9 @@ const getBaseUrl = () => {
 // API 함수
 export const fetchPosts = async (delay = 1000): Promise<PostsResponse> => {
   const baseUrl = getBaseUrl();
-  const response = await axios.get<PostsResponse>(`${baseUrl}/api/posts?delay=${delay}`);
+  const response = await axios.get<PostsResponse>(
+    `${baseUrl}/api/posts?delay=${delay}`
+  );
   return response.data;
 };
 

@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 // Mock 데이터
 const posts = [
@@ -13,8 +13,8 @@ const posts = [
  * Mock API 엔드포인트
  * 의도적으로 1초 딜레이를 추가하여 로딩 상태를 명확하게 보여줌
  */
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
+export async function GET(request: NextRequest) {
+  const searchParams = request.nextUrl.searchParams;
   const delay = parseInt(searchParams.get('delay') || '1000', 10);
 
   // 딜레이 시뮬레이션
